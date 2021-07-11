@@ -7,6 +7,7 @@ use App\Entity\JobArticle;
 use App\Entity\JobCategory;
 use App\Entity\ParagraphTest;
 use App\Entity\Product;
+use App\Entity\User;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractDashboardController;
@@ -35,11 +36,14 @@ class DashboardController extends AbstractDashboardController
             MenuItem::linkToDashboard('Dashboard', 'fa fa-home'),
 
             MenuItem::section('Métiers'),
-            MenuItem::linkToCrud('Paragraphs', 'fa fa-tags', ParagraphTest::class),
-            MenuItem::linkToCrud('Products', 'fa fa-tags', Product::class),
+            MenuItem::linkToCrud('Paragraphs', 'fa fa-align-left', ParagraphTest::class),
+            MenuItem::linkToCrud('Products', 'fa fa-images', Product::class),
             MenuItem::linkToCrud('Categories', 'fa fa-tags', JobCategory::class),
-            MenuItem::linkToCrud('Entrepreneurs', 'fa fa-tags', Job::class),
-            MenuItem::linkToCrud('Articles', 'fa fa-tags', JobArticle::class),
+            MenuItem::linkToCrud('Entrepreneurs', 'fa fa-briefcase', Job::class),
+            MenuItem::linkToCrud('Articles', 'fa fa-newspaper', JobArticle::class),
+
+            MenuItem::section('Administration'),
+            MenuItem::linkToCrud('Utilisateurs', 'fa fa-users', User::class),
         ];
     }
 }

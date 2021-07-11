@@ -15,6 +15,7 @@
         "easycorp/easyadmin-bundle": "^3",
         "friendsofsymfony/ckeditor-bundle": "^2.3",
         "knplabs/knp-menu-bundle": "^3.1",
+        "pgrimaud/instagram-user-feed": "^6.8",
         "phpdocumentor/reflection-docblock": "^5.2",
         "sensio/framework-extra-bundle": "^6.1",
         "stof/doctrine-extensions-bundle": "^1.5.0",
@@ -45,6 +46,7 @@
         "symfony/web-link": "5.3.*",
         "symfony/webpack-encore-bundle": "^1.12",
         "symfony/yaml": "5.3.*",
+        "symfonycasts/verify-email-bundle": "^1.5",
         "twig/extra-bundle": "^2.12|^3.0",
         "twig/twig": "^2.12|^3.0",
         "vich/uploader-bundle": "^1.18"
