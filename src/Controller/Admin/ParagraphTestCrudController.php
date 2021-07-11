@@ -25,7 +25,7 @@ class ParagraphTestCrudController extends AbstractCrudController
             CollectionField::new('images')
                 ->allowAdd()
                 ->allowDelete()
-                ->setEntryIsComplex(true)
+                ->setEntryIsComplex(false)
                 ->setEntryType(ProductType::class)
                 ->setFormTypeOptions([
                     'by_reference' => 'false'

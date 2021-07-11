@@ -19,7 +19,8 @@ class JobCrudController extends AbstractCrudController
     {
         return [
             TextField::new('name'),
-            AssociationField::new('category')
+            AssociationField::new('category'),
+            AssociationField::new('user')
         ];
     }
 

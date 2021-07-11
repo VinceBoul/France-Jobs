@@ -3,7 +3,10 @@
 namespace App\Entity;
 
 use App\Repository\JobArticleRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * @ORM\Entity(repositoryClass=JobArticleRepository::class)
@@ -24,6 +27,12 @@ class JobArticle
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Gedmo\Slug(fields={"title"})
+     */
+    private $slug;
+
+    /**
+     * @ORM\Column(type="string", length=255)
      */
     private $subtitle;
 
@@ -32,6 +41,17 @@ class JobArticle
      * @ORM\JoinColumn(nullable=false)
      */
     private $job;
+
+    /**
+     * @ORM\ManyToMany(targetEntity=ParagraphTest::class, cascade={"persist", "remove"})
+     */
+    private $paragraphs;
+
+
+    public function __construct()
+    {
+        $this->paragraphs = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -70,6 +90,30 @@ class JobArticle
     public function setJob(?Job $job): self
     {
         $this->job = $job;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|ParagraphTest[]
+     */
+    public function getParagraphs(): Collection
+    {
+        return $this->paragraphs;
+    }
+
+    public function addParagraph(ParagraphTest $paragraph): self
+    {
+        if (!$this->paragraphs->contains($paragraph)) {
+            $this->paragraphs[] = $paragraph;
+        }
+
+        return $this;
+    }
+
+    public function removeParagraph(ParagraphTest $paragraph): self
+    {
+        $this->paragraphs->removeElement($paragraph);
 
         return $this;
     }

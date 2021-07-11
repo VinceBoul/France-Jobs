@@ -24,10 +24,12 @@ class ParagraphTest
      */
     private $title;
 
+
     /**
      * @ORM\ManyToMany(targetEntity=Product::class, cascade={"persist", "remove"})
      */
     private $images;
+
 
     public function __construct()
     {
@@ -73,5 +75,10 @@ class ParagraphTest
         $this->images->removeElement($image);
 
         return $this;
+    }
+
+    public function __toString()
+    {
+        return $this->getTitle();
     }
 }

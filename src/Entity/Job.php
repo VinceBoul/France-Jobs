@@ -42,6 +42,12 @@ class Job
      */
     private $jobArticles;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="jobs")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $user;
+
     public function __construct()
     {
         $this->jobArticles = new ArrayCollection();
@@ -121,5 +127,17 @@ class Job
     public function __toString()
     {
         return $this->name;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): self
+    {
+        $this->user = $user;
+
+        return $this;
     }
 }

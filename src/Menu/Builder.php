@@ -40,12 +40,12 @@ final class Builder
 
         // findMostRecent and Blog are just imaginary examples
         $blog = $this->em->getRepository(JobCategory::class)->find(1);
-
+/*
         $menu->addChild('Latest Blog Post', [
             'route' => 'job_category_show',
             'routeParameters' => ['id' => $blog->getId()]
         ]);
-
+*/
         // create another menu item
         //$menu->addChild('About Me', ['route' => 'about']);
         // you can also add sub levels to your menus as follows
