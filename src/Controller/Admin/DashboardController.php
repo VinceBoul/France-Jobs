@@ -37,12 +37,12 @@ class DashboardController extends AbstractDashboardController
 
             MenuItem::section('Métiers'),
             MenuItem::linkToCrud('Paragraphs', 'fa fa-align-left', ParagraphTest::class),
-            MenuItem::linkToCrud('Products', 'fa fa-images', Product::class),
-            MenuItem::linkToCrud('Categories', 'fa fa-tags', JobCategory::class),
-            MenuItem::linkToCrud('Entrepreneurs', 'fa fa-briefcase', Job::class),
             MenuItem::linkToCrud('Articles', 'fa fa-newspaper', JobArticle::class),
 
             MenuItem::section('Administration'),
+            MenuItem::linkToCrud('Images', 'fa fa-images', Product::class),
+            MenuItem::linkToCrud('Entrepreneurs', 'fa fa-briefcase', Job::class),
+            MenuItem::linkToCrud('Categories', 'fa fa-tags', JobCategory::class),
             MenuItem::linkToCrud('Utilisateurs', 'fa fa-users', User::class),
         ];
     }
