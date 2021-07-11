@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}JobArticle index{% endblock %}
+
+{% block body %}
+    <h1>JobArticle index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Title</th>
+                <th>Subtitle</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for job_article in job_articles %}
+            <tr>
+                <td>{{ job_article.id }}</td>
+                <td>{{ job_article.title }}</td>
+                <td>{{ job_article.subtitle }}</td>
+                <td>
+                    <a href="{{ path('job_article_show', {'id': job_article.id}) }}">show</a>
+                    <a href="{{ path('job_article_edit', {'id': job_article.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('job_article_new') }}">Create new</a>
+{% endblock %}

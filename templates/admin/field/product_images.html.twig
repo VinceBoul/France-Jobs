@@ -1,0 +1,20 @@
+
+
+{% for field in entity.fields %}
+
+     {% if field.property == "images" %}
+         {% for image in field.value.unwrap.values %}
+             {% set html_id = 'ea-lightbox-' ~ field.uniqueId ~ '-' ~ image.id %}
+
+             <a href="#" class="ea-lightbox-thumbnail" data-ea-lightbox-content-selector="#{{ html_id }}" data-featherlight="#{{ html_id }}" data-featherlight-close-on-click="anywhere">
+                 <img src="{{ vich_uploader_asset(image, 'imageFile') }}" class="img-fluid">
+             </a>
+
+             <div id="{{ html_id }}" class="ea-lightbox">
+                 <img src="{{ vich_uploader_asset(image, 'imageFile') }}">
+             </div>
+
+         {% endfor %}
+    {% endif %}
+
+{% endfor %}

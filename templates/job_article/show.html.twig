@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}JobArticle{% endblock %}
+
+{% block body %}
+    <h1>JobArticle</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ job_article.id }}</td>
+            </tr>
+            <tr>
+                <th>Title</th>
+                <td>{{ job_article.title }}</td>
+            </tr>
+            <tr>
+                <th>Subtitle</th>
+                <td>{{ job_article.subtitle|raw }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('job_article_index') }}">back to list</a>
+
+    <a href="{{ path('job_article_edit', {'id': job_article.id}) }}">edit</a>
+
+    {{ include('job_article/_delete_form.html.twig') }}
+{% endblock %}

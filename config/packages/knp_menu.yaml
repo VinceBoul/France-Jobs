@@ -1,0 +1,3 @@
+knp_menu:
+  twig: # use "twig: false" to disable the Twig extension and the TwigRenderer
+    template: menu/knp_menu.html.twig
