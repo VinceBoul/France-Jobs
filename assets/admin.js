@@ -5,25 +5,10 @@
  * (and its CSS file) in your base layout (base.html.twig).
  */
 
-// any CSS you import will output into a single css file (app.css in this case)
-import './styles/app.scss';
-
-// start the Stimulus application
-import './bootstrap';
 
 const $ = require('jquery');
-// this "modifies" the jquery module: adding behavior to it
-// the bootstrap module doesn't export/return anything
-require('bootstrap');
 
-let map;
-
-function initMap() {
-	map = new google.maps.Map(document.getElementById("map"), {
-		center: { lat: -34.397, lng: 150.644 },
-		zoom: 8,
-	});
-
+function initAutocomplete() {
 
 	const center = { lat: 50.064192, lng: -130.605469 };
 // Create a bounding box with sides ~10km away from the center point
@@ -44,4 +29,4 @@ function initMap() {
 	const autocomplete = new google.maps.places.Autocomplete(input, options);
 }
 
-window.initMap = initMap;
+window.initAutocomplete = initAutocomplete;

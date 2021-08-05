@@ -36,6 +36,12 @@ Les rôles utilisateurs sont les suivants :
 #### Job 
 Entité qui représente un entrepreneur
 
+    * Titre
+    * Carte google
+    * Paragraph "informations pratiques"
+    * Articles récents
+    
+
 #### JobCategory
 La catégorie d'un `Job`
 
@@ -47,3 +53,17 @@ Chaque entrepreneur peut créer lui même ses propres articles
 ### Gestion de contenu
 
 #### Content
+* Image de couverture
+* titre de la page
+* Paragraph 
+* carousel page d'accueil
+* parallax 
+* Annonce du site
+* Carte google
+* Page à propos
+    * chiffres du site
+
+## Tâches
+
+* Thème par catégorie de 1er niveau
+* Types de paragrahes

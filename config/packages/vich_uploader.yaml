@@ -11,4 +11,14 @@ vich_uploader:
             upload_destination: '%kernel.project_dir%/public%app.path.product_images%'
             delete_on_update: true
             delete_on_remove: true
+        gallery_images:
+            uri_prefix: '%app.path.gallery_images%'
+            upload_destination: '%kernel.project_dir%/public%app.path.gallery_images%'
+            delete_on_update: true
+            delete_on_remove: true
+        job_category_images:
+            uri_prefix: '%app.path.job_category_images%'
+            upload_destination: '%kernel.project_dir%/public%app.path.job_category_images%'
+            delete_on_update: true
+            delete_on_remove: true
 

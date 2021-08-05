@@ -42,12 +42,6 @@ class JobArticle
      */
     private $job;
 
-    /**
-     * @ORM\ManyToMany(targetEntity=ParagraphTest::class, cascade={"persist", "remove"})
-     */
-    private $paragraphs;
-
-
     public function __construct()
     {
         $this->paragraphs = new ArrayCollection();
@@ -94,27 +88,4 @@ class JobArticle
         return $this;
     }
 
-    /**
-     * @return Collection|ParagraphTest[]
-     */
-    public function getParagraphs(): Collection
-    {
-        return $this->paragraphs;
-    }
-
-    public function addParagraph(ParagraphTest $paragraph): self
-    {
-        if (!$this->paragraphs->contains($paragraph)) {
-            $this->paragraphs[] = $paragraph;
-        }
-
-        return $this;
-    }
-
-    public function removeParagraph(ParagraphTest $paragraph): self
-    {
-        $this->paragraphs->removeElement($paragraph);
-
-        return $this;
-    }
 }

@@ -5,6 +5,7 @@ namespace App\Controller\Admin;
 use App\Entity\JobArticle;
 use App\Entity\User;
 use App\Form\ParagraphTestType;
+use Doctrine\ORM\EntityRepository;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Config\KeyValueStore;
 use EasyCorp\Bundle\EasyAdminBundle\Context\AdminContext;
@@ -28,33 +29,61 @@ class JobArticleCrudController extends AbstractCrudController
     {
         return $crud
             ->addFormTheme('@FOSCKEditor/Form/ckeditor_widget.html.twig')
+         //   ->overrideTemplate('crud/field/collection', 'bundles/EasyAdminBundle/form/form_theme.html.twig')
             ;
     }
 
     public function configureFields(string $pageName): iterable
     {
-
-        return [
+        $fields = [
             TextField::new('title'),
-            AssociationField::new('job'),
             TextEditorField::new('subtitle')->setFormType(CKEditorType::class),
             CollectionField::new('paragraphs')
-                ->allowAdd()
-                ->allowDelete()
+                ->allowAdd()->allowDelete()
                 ->setEntryIsComplex(true)
                 ->setEntryType(ParagraphTestType::class)
                 ->setFormTypeOptions([
-                    'by_reference' => 'false',
-                    'entry_options' => ['label' => true],
-                ])->onlyOnForms()
-                ->setTranslationParameters(['form.label.delete'=> 'Supprimer'])
-               // ->setValue($job)
-              /*  ->setFormTypeOptions(['query_builder' => function (EntityRepository $em) {
-                return $em->createQueryBuilder('f')
-                    ->where('f.user = :user')
-                    ->setParameter('user', $this->getUser());
-            }])*/
+                    'by_reference' => 'false'
+                ]),
         ];
+
+        /**
+         * @var User $user
+         */
+        $user = $this->getUser();
+        if ($user){
+            $jobs = $user->getJobs();
+            if (count($jobs) === 1){
+                $fields[] = AssociationField::new('job')->setValue($jobs->get(0))
+                    ->setFormTypeOptions(['query_builder' => function (EntityRepository $em) {
+                        return $em->createQueryBuilder('f')
+                            ->where('f.user = :user')
+                            ->setParameter('user', $this->getUser());
+                    }]);
+            }
+
+        }
+
+        return $fields;
+
+  /*      return [
+            TextField::new('title'),
+            AssociationField::new('job')->setValue(),
+            TextEditorField::new('subtitle')->setFormType(CKEditorType::class),
+
+                       CollectionField::new('paragraphs')
+                ->setEntryIsComplex(true)
+                ->allowAdd()
+                ->allowDelete()
+                ->setEntryType(ParagraphTestType::class)
+                ->setFormTypeOptions([
+                    'by_reference' => false
+                ])
+                ->showEntryLabel(true)
+                ->onlyOnForms()
+                ->setTranslationParameters(['form.label.delete'=> 'Supprimer'])
+
+        ];*/
     }
 
 
@@ -65,9 +94,11 @@ class JobArticleCrudController extends AbstractCrudController
          * @var User $user
          */
         $user = $this->getUser();
-        $jobs = $user->getJobs();
-        if (count($jobs) === 1){
-            $product->setJob($jobs->get(0));
+        if ($user){
+            $jobs = $user->getJobs();
+            if (count($jobs) === 1){
+                $product->setJob($jobs->get(0));
+            }
         }
 
         return $product;

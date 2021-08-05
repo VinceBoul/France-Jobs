@@ -8,8 +8,10 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\CollectionField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\Field;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\TextareaField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
+use Vich\UploaderBundle\Form\Type\VichImageType;
 
 class JobCategoryCrudController extends AbstractCrudController
 {
@@ -23,6 +25,8 @@ class JobCategoryCrudController extends AbstractCrudController
     {
         return [
             TextField::new('name'),
+            TextareaField::new('imageFile')->setFormType(VichImageType::class)->onlyOnForms(),
+            TextareaField::new('image')->setTemplatePath('admin/field/vich_uploader_image.html.twig')->hideOnForm(),
             AssociationField::new('parent')
         ];
     }

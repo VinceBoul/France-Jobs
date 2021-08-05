@@ -2,6 +2,7 @@
 
 namespace App\Controller\Admin;
 
+use App\Entity\Gallery;
 use App\Entity\Job;
 use App\Entity\JobArticle;
 use App\Entity\JobCategory;
@@ -36,8 +37,8 @@ class DashboardController extends AbstractDashboardController
             MenuItem::linkToDashboard('Dashboard', 'fa fa-home'),
 
             MenuItem::section('Métiers'),
-            MenuItem::linkToCrud('Paragraphs', 'fa fa-align-left', ParagraphTest::class),
             MenuItem::linkToCrud('Articles', 'fa fa-newspaper', JobArticle::class),
+            MenuItem::linkToCrud('Gallery', 'fa fa-newspaper', Gallery::class),
 
             MenuItem::section('Administration'),
             MenuItem::linkToCrud('Images', 'fa fa-images', Product::class),

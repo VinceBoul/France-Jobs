@@ -140,4 +140,5 @@ class Job
 
         return $this;
     }
+
 }
