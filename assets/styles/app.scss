@@ -37,3 +37,23 @@ body {
     }
 }
 /* ============ mobile view .end// ============ */
+
+.carousel {
+    max-height: 500px;
+    overflow: hidden;
+
+    .carousel-item img {
+        max-height: 500px;
+        min-width: auto;
+        height: auto;
+    }
+}
+
+.container-item-content{
+    position: absolute;
+    margin: 0;
+    color: white;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}

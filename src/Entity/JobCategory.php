@@ -45,12 +45,7 @@ class JobCategory
     private $children;
 
     /**
-     * @ORM\OneToMany(targetEntity=Job::class, mappedBy="category")
-     */
-    private $jobs;
-
-    /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $image;
 
@@ -61,9 +56,14 @@ class JobCategory
     private $imageFile;
 
     /**
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="datetime", nullable=true)
      */
     private $updatedAt;
+
+    /**
+     * @ORM\ManyToMany(targetEntity=Job::class, mappedBy="categories")
+     */
+    private $jobs;
 
     public function __construct()
     {
@@ -147,35 +147,6 @@ class JobCategory
         return $this->name;
     }
 
-    /**
-     * @return Collection|Job[]
-     */
-    public function getJobs(): Collection
-    {
-        return $this->jobs;
-    }
-
-    public function addJob(Job $job): self
-    {
-        if (!$this->jobs->contains($job)) {
-            $this->jobs[] = $job;
-            $job->setCategory($this);
-        }
-
-        return $this;
-    }
-
-    public function removeJob(Job $job): self
-    {
-        if ($this->jobs->removeElement($job)) {
-            // set the owning side to null (unless already changed)
-            if ($job->getCategory() === $this) {
-                $job->setCategory(null);
-            }
-        }
-
-        return $this;
-    }
 
     public function getImage(): ?string
     {
@@ -200,6 +171,33 @@ class JobCategory
     public function getImageFile()
     {
         return $this->imageFile;
+    }
+
+    /**
+     * @return Collection|Job[]
+     */
+    public function getJobs(): Collection
+    {
+        return $this->jobs;
+    }
+
+    public function addJob(Job $job): self
+    {
+        if (!$this->jobs->contains($job)) {
+            $this->jobs[] = $job;
+            $job->addCategory($this);
+        }
+
+        return $this;
+    }
+
+    public function removeJob(Job $job): self
+    {
+        if ($this->jobs->removeElement($job)) {
+            $job->removeCategory($this);
+        }
+
+        return $this;
     }
 
 }

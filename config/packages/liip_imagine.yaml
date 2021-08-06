@@ -18,3 +18,22 @@ liip_imagine:
             filters:
                 auto_rotate: ~
                 thumbnail: { size: [100, 100], mode: outbound }
+
+        # name our filter set "my_crop_filter"
+        my_crop_filter:
+            filters:
+                # use and setup the "crop" filter
+                crop:
+                    # set the size of the cropping area
+                    size: [ 1300, 500 ]
+                    # set the starting coordinates of the crop
+                    start: [ 0, 0 ]
+        # name our first filter set "my_heighten_filter"
+        my_heighten_filter:
+            filters:
+
+                # use and setup the "relative_resize" filter
+                relative_resize:
+
+                    # given 50x40px, output 75x60px using "heighten" option
+                    heighten: 500

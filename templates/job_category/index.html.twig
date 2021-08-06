@@ -3,35 +3,35 @@
 {% block title %}JobCategory index{% endblock %}
 
 {% block body %}
-    <h1>JobCategory index</h1>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Name</th>
-                <th>Slug</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for job_category in job_categories %}
-            <tr>
-                <td>{{ job_category.id }}</td>
-                <td>{{ job_category.name }}</td>
-                <td>{{ job_category.slug }}</td>
-                <td>
-                    <a href="{{ path('job_category_show', {'id': job_category.id}) }}">show</a>
-                    <a href="{{ path('job_category_edit', {'id': job_category.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="4">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
 
-    <a href="{{ path('job_category_new') }}">Create new</a>
+    <div class="">
+
+        <div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
+            <div class="carousel-inner">
+                {% for category in job_categories %}
+                <div class="carousel-item {% if loop.first %} active {% endif %}">
+                    <img src="{{ vich_uploader_asset(category, 'imageFile')|imagine_filter('my_heighten_filter') }}" class="d-block w-100">
+                    <div class="container-item-content">
+                        <a class="btn btn-info" href="{{ path('job_category_show', {'slug' : category.slug }) }}" >En savoir plus</a>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+    </div>
+
+    <div class="woven-tagline">
+        Hello
+    </div>
 {% endblock %}
+
+{% block gmap %}{% endblock %}

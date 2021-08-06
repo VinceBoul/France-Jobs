@@ -40,9 +40,9 @@ class JobCrudController extends AbstractCrudController
         return [
             FormField::addPanel('User Details'),
             TextField::new('name'),
-            AssociationField::new('category'),
+            AssociationField::new('categories')
+            ,
             FormField::addPanel('User Details 2'),
-
             AssociationField::new('user'),
         ];
     }

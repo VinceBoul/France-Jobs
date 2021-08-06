@@ -40,12 +40,17 @@ Entité qui représente un entrepreneur
     * Carte google
     * Paragraph "informations pratiques"
     * Articles récents
-    
+
 
 #### JobCategory
 La catégorie d'un `Job`
 
 Le megamenu du site se construit à partir de toutes les catégories
+
+Dans une page category :
+    * Carousel des sous catégories
+    * Actualités de toutes les sous catégories 
+    * Grille des sous catégories
 
 #### JobArticle
 Chaque entrepreneur peut créer lui même ses propres articles

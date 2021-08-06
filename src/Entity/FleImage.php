@@ -56,6 +56,11 @@ class FleImage
      */
     private $updatedAt;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Job::class, inversedBy="carouselImages")
+     */
+    private $job;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -143,5 +148,17 @@ class FleImage
     public function getImageFile()
     {
         return $this->imageFile;
+    }
+
+    public function getJob(): ?Job
+    {
+        return $this->job;
+    }
+
+    public function setJob(?Job $job): self
+    {
+        $this->job = $job;
+
+        return $this;
     }
 }
