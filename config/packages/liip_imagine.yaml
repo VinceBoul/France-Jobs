@@ -7,12 +7,11 @@ liip_imagine:
     filter_sets:
         cache: ~
         user_mini_thumbnail:
-
             # il existe de nombreux filtres prédéfinis (http://symfony.com/doc/master/bundles/LiipImagineBundle/filters.html) mais il est aussi possible d’en créer.
             quality: 75
             filters:
                 auto_rotate: ~
-                thumbnail: { size: [52, 52], mode: outbound }
+                thumbnail: { size: [250, 250], mode: outbound }
         user_thumbnail:
             quality: 75
             filters:

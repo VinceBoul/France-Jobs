@@ -1,0 +1,9 @@
+
+
+{% for field in entity.fields %}
+
+     {% if field.property == 'jobUrl' %}
+          <a href="{{ field.value }}" target="_blank" >Voir la page</a>
+    {% endif %}
+
+{% endfor %}

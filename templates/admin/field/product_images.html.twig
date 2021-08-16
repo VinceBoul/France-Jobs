@@ -2,7 +2,7 @@
 
 {% for field in entity.fields %}
 
-     {% if field.property == "images" or field.property == "gallery_images" %}
+     {% if field.property == "images" or field.property == "gallery_images" or field.property == 'carouselImages' %}
           {% for image in field.value.unwrap.values %}
               {% if vich_uploader_asset(image, 'imageFile') is not null %}
 

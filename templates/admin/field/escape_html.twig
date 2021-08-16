@@ -1,0 +1,9 @@
+
+
+{% for field in entity.fields %}
+
+     {% if field.property in ['coordonnees', 'description'] %}
+          {{ field.value|raw }}
+    {% endif %}
+
+{% endfor %}

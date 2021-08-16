@@ -2,7 +2,7 @@
     "devDependencies": {
         "@symfony/stimulus-bridge": "^2.0.0",
         "@symfony/webpack-encore": "^1.0.0",
-        "bootstrap": "^5.0.2",
+        "bootstrap": "^5.1.0",
         "core-js": "^3.0.0",
         "jquery": "^3.6.0",
         "regenerator-runtime": "^0.13.2",
@@ -18,5 +18,13 @@
         "dev": "encore dev",
         "watch": "encore dev --watch",
         "build": "encore production --progress"
+    },
+    "dependencies": {
+        "animate.css": "^4.1.1",
+        "aos": "^2.3.4",
+        "jquery-sticky": "^1.0.4",
+        "lightbox2": "^2.11.3",
+        "masonry-layout": "^4.2.2",
+        "owl.carousel": "^2.3.4"
     }
 }

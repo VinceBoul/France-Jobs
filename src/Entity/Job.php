@@ -107,6 +107,41 @@ class Job
      */
     private $carouselImages;
 
+    /**
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private $coordonnees;
+
+    /**
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private $infosPratique;
+
+    /**
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private $typeProduits;
+
+    /**
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private $description;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $jobUrl;
+
+    /**
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private $typeReglement;
+
+    /**
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private $horaires;
+
     public function __construct()
     {
         $this->jobArticles = new ArrayCollection();
@@ -387,6 +422,90 @@ class Job
                 $carouselImage->setJob(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getCoordonnees(): ?string
+    {
+        return $this->coordonnees;
+    }
+
+    public function setCoordonnees(?string $coordonnees): self
+    {
+        $this->coordonnees = $coordonnees;
+
+        return $this;
+    }
+
+    public function getInfosPratique(): ?string
+    {
+        return $this->infosPratique;
+    }
+
+    public function setInfosPratique(?string $infosPratique): self
+    {
+        $this->infosPratique = $infosPratique;
+
+        return $this;
+    }
+
+    public function getTypeProduits(): ?string
+    {
+        return $this->typeProduits;
+    }
+
+    public function setTypeProduits(?string $typeProduits): self
+    {
+        $this->typeProduits = $typeProduits;
+
+        return $this;
+    }
+
+    public function getDescription(): ?string
+    {
+        return $this->description;
+    }
+
+    public function setDescription(?string $description): self
+    {
+        $this->description = $description;
+
+        return $this;
+    }
+
+    public function getJobUrl(): ?string
+    {
+        return $this->jobUrl;
+    }
+
+    public function setJobUrl(string $jobUrl): self
+    {
+        $this->jobUrl = $jobUrl;
+
+        return $this;
+    }
+
+    public function getTypeReglement(): ?string
+    {
+        return $this->typeReglement;
+    }
+
+    public function setTypeReglement(?string $typeReglement): self
+    {
+        $this->typeReglement = $typeReglement;
+
+        return $this;
+    }
+
+    public function getHoraires(): ?string
+    {
+        return $this->horaires;
+    }
+
+    public function setHoraires(?string $horaires): self
+    {
+        $this->horaires = $horaires;
 
         return $this;
     }

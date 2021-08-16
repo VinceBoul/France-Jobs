@@ -3,14 +3,18 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Job;
+use App\Form\FleImageType;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Assets;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\CollectionField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\FormField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
+use FOS\CKEditorBundle\Form\Type\CKEditorType;
 
 class JobCrudController extends AbstractCrudController
 {
@@ -33,6 +37,11 @@ class JobCrudController extends AbstractCrudController
             ->add(Crud::PAGE_INDEX, $sendInvoice);
     }
 
+    public function configureCrud(Crud $crud): Crud
+    {
+        return $crud
+            ->addFormTheme('@FOSCKEditor/Form/ckeditor_widget.html.twig');
+    }
 
 
     public function configureFields(string $pageName): iterable
@@ -40,10 +49,32 @@ class JobCrudController extends AbstractCrudController
         return [
             FormField::addPanel('User Details'),
             TextField::new('name'),
-            AssociationField::new('categories')
-            ,
-            FormField::addPanel('User Details 2'),
-            AssociationField::new('user'),
+         //   AssociationField::new('categories'),
+            TextField::new('description')->setTemplatePath('admin/field/job_description.html.twig')->onlyOnIndex(),
+            TextField::new('description')->setFormType(CKEditorType::class)->onlyOnForms(),
+
+            TextField::new('horaires')->setTemplatePath('admin/field/job_horaires.html.twig')->onlyOnIndex(),
+            TextField::new('horaires')->setFormType(CKEditorType::class)->onlyOnForms(),
+            TextField::new('jobUrl')->hideOnForm()->setTemplatePath('admin/field/job_url.html.twig'),
+            TextField::new('infosPratique'),
+            TextField::new('typeReglement')->setFormType(CKEditorType::class)->onlyOnForms(),
+            TextField::new('coordonnees')->setTemplatePath('admin/field/job_coordonnees.html.twig')->onlyOnIndex(),
+            TextField::new('coordonnees')->setFormType(CKEditorType::class)->onlyOnForms(),
+
+            /*  TextField::new('adresse'),
+              TextField::new('depName'),
+              TextField::new('ville'),*/
+            TextField::new('typeProduits'),
+            FormField::addPanel('Images'),
+            CollectionField::new('carouselImages', 'Images')
+                ->allowAdd()
+                ->allowDelete()
+                ->setEntryType(FleImageType::class)
+                ->setFormTypeOptions([
+                    'by_reference' => 'false'
+                ])
+                ->setTranslationParameters(['form.label.delete'=>'Delete'])
+                ->onlyOnForms(),
         ];
     }
 

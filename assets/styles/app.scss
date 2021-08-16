@@ -1,7 +1,11 @@
 @import "~bootstrap/scss/bootstrap";
+@import "~lightbox2/dist/css/lightbox.min.css";
+
+@import "~animate.css";
+@import "image_effects";
 
 body {
-    background-color: lightgray;
+    //background-color: lightgray;
 }
 
 #map {

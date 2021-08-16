@@ -1,0 +1,9 @@
+
+
+{% for field in entity.fields %}
+
+     {% if field.property == 'horaires' %}
+          {{ field.value|raw }}
+    {% endif %}
+
+{% endfor %}

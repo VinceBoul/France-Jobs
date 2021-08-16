@@ -1,0 +1,9 @@
+
+
+{% for field in entity.fields %}
+
+     {% if field.property == 'description' %}
+          {{ field.value|raw[0:100] }}
+    {% endif %}
+
+{% endfor %}

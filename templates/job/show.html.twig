@@ -3,28 +3,87 @@
 {% block title %}Job{% endblock %}
 
 {% block body %}
-    <h1>Job</h1>
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ job.id }}</td>
-            </tr>
-            <tr>
-                <th>Name</th>
-                <td>{{ job.name }}</td>
-            </tr>
-            <tr>
-                <th>Slug</th>
-                <td>{{ job.slug }}</td>
-            </tr>
-        </tbody>
-    </table>
+    {# Présentation Job #}
+    <section >
+        <div class="container">
+            <div class="row">
+                <div class="col-12"><h1>{{ job.name|lower|capitalize }}</h1></div>
+                <div class="col-6">
+                    <div class="card infos-pratiques" >
+                        <div class="card-body">
+                            <h5 class="card-title">Informations pratiques</h5>
+                            {{ job.horaires|raw }}
+                            {{ job.infosPratique|raw }}
+                            <address>Adresse : {{ job.adresse }} {{ job.codePostal }} {{ job.ville }}</address>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <h2>Description</h2>
+                    {{ job.description|raw }}
+                </div>
+            </div>
+        </div>
+    </section>
 
-    <a href="{{ path('job_index') }}">back to list</a>
+    {# Types produits #}
+    <section>
+        <div class="container">
+            <div class="row">
 
-    <a href="{{ path('job_edit', {'id': job.id}) }}">edit</a>
+            </div>
+        </div>
 
-    {{ include('job/_delete_form.html.twig') }}
+    </section>
+
+    {# Horaires - Infos pratiques - Map / 2 colonnes#}
+    <section>
+        <div class="container ">
+            <div class="row">
+                <div class="col-12 col-md-6">
+                    <div class="card coordonnes" >
+                        <div class="card-body">
+                            <h5 class="card-title">Coordonnées</h5>
+                            {{ job.coordonnees|raw }}
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    {# Gallerie #}
+    <section>
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-md-6"></div>
+                <div class="col-12 col-md-6">
+                    <div class="col-12">
+                        <h3>Gallerie</h3>
+                    </div>
+                    <div class="row carousel-images">
+                        {% for img in job.carouselImages %}
+                            <div class="col-12 hover03 hover14 column">
+                                <a class="item "  href="{{ vich_uploader_asset(img, 'imageFile') }}" data-lightbox="roadtrip" data-sub-html="#caption{{ loop.index }}">
+                                    <figure>
+                                        <img src="{{ vich_uploader_asset(img, 'imageFile') }}" class="img-fluid rounded-3">
+                                    </figure>
+                                </a>
+
+                                {#                         <div id="caption{{ loop.index }}" style="display:none">
+                            <h4>{{ img.title }}</h4>
+                            <p>{{ img.description }}</p>
+                        </div>
+                                #}
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 {% endblock %}
